@@ -1,6 +1,6 @@
 using WinFormsAppDotNet6;
 
-namespace DepositCalculator.ClientDotNet6
+namespace DepositCalculator.Client
 {
 	internal static class Program
 	{

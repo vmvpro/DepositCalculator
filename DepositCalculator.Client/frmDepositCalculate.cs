@@ -1,4 +1,5 @@
 ﻿using DepositCalculator.Core.Domain;
+using DepositCalculator.Core.Domain.Strategy;
 using DepositCalculator.Core.Enums;
 using DepositCalculator.Core.Models;
 using FluentValidation.Results;
@@ -27,7 +28,7 @@ namespace WinFormsAppDotNet6
 
 			var deposit = new Deposit(depositModel);
 
-			if (!deposit.IsValid())
+			if (!(await deposit.IsValid()))
 			{
 				MessageBox.Show(deposit.ErrorMessage);
 				lblTotalResult.Text = "Error";

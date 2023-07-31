@@ -1,4 +1,5 @@
-﻿using DepositCalculator.Core.Enums;
+﻿using DepositCalculator.Core.Domain.Strategy;
+using DepositCalculator.Core.Enums;
 using DepositCalculator.Core.Models;
 using FluentValidation.Results;
 using System;
@@ -31,7 +32,7 @@ namespace DepositCalculator.Core.Domain
 
 		public IDepositStrategy Strategy { private get; set; }
 
-		public bool IsValid()
+		public Task<bool> IsValid()
 		{
 			DepositModelValidator validator = new DepositModelValidator();
 			ValidationResult results = validator.Validate(_depositModel);
@@ -42,12 +43,12 @@ namespace DepositCalculator.Core.Domain
 				{
 					ErrorMessage = "Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage;
 				}
-				return false;
+				return Task.FromResult(false);
 			}
 			else
 			{
 				ErrorMessage = "OK";
-				return true;
+				return Task.FromResult(true);
 			}
 		}
 

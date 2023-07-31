@@ -198,7 +198,7 @@
 			this.label1.TabIndex = 10;
 			this.label1.Text = "©vmvpro 2023☺";
 			// 
-			// Form1
+			// frmDepositCalculate
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,9 +207,8 @@
 			this.Controls.Add(this.lblTotalResult);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.TotalResult);
-			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "frmDepositCalculate";
+			this.Text = "Deposit Calculate";
 			this.Load += new System.EventHandler(this.frmDepositCalculate_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
