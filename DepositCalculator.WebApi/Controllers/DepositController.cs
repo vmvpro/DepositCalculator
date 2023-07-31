@@ -13,18 +13,17 @@ namespace DepositCalculator.WebApi.Controllers
 	[Route("[controller]")]
 	[ApiController]
 	[Produces("application/json")]
-	public class ProductsController : ControllerBase
+	public class DepositController : ControllerBase
 	{
 		IProductsRepo ProductsRepo { get; }
 		IOptionsSnapshot<Settings.Products> Settings { get; }
 		IMapper Mapper { get; }
 		ILogger Logger { get; }
 
-		public ProductsController(IProductsRepo productsRepo, IOptionsSnapshot<Settings.Products> options, IMapper mapper, ILogger<ProductsController> logger)
+		public DepositController(IOptionsSnapshot<Settings.Products> options, IMapper mapper, ILogger<DepositController> logger)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-			ProductsRepo = productsRepo ?? throw new ArgumentNullException(nameof(productsRepo));
 			Settings = options ?? throw new ArgumentNullException(nameof(options));
 		}
 
