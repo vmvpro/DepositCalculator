@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 
 		private void frmDepositCalculate_Load(object sender, EventArgs e)
 		{
-			txtInitialAmount.Text = "350000";
+			txtInitialAmount.Text = "10000";
 			txtInterestRate.Value = 3;
 			txtNumberOfMonths.Value = 6;
 			cbxPaymentMethod.SelectedIndex = (int)CalculationAlgorithm.DailyCapitalization;
