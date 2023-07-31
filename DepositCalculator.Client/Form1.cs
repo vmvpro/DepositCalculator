@@ -1,18 +1,9 @@
-﻿using DepositCalculator.Client.Domain;
-using DepositCalculator.Client.Enums;
-using DepositCalculator.Client.Model;
+﻿using DepositCalculator.Core.Domain;
+using DepositCalculator.Core.Enums;
+using DepositCalculator.Core.Models;
 using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace WinFormsAppDotNet6
 {
 	public partial class frmDepositCalculate : Form
 	{
@@ -69,7 +60,7 @@ namespace WindowsFormsApp1
 
 				return;
 
-				
+
 			}
 
 			CalculationDefinition(depositModel);
@@ -96,7 +87,7 @@ namespace WindowsFormsApp1
 				// General calculation formula
 				// Result is the amount at the end of the term,
 				// including the opening amount and accrued interest
-				
+
 				var D = P + ((P * I * T / K) / 100);
 
 				lblTotalResult.Text = D.ToString("### ### ###.00 ₴");
@@ -148,7 +139,6 @@ namespace WindowsFormsApp1
 
 		#endregion
 
-		
 
 		private DepositModel GetDepositModelFromForm() => new DepositModel()
 		{
@@ -173,6 +163,5 @@ namespace WindowsFormsApp1
 					return new SingleStrategy();
 			}
 		}
-
 	}
 }

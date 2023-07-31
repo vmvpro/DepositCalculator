@@ -1,16 +1,16 @@
-﻿namespace WindowsFormsApp1
+﻿namespace WinFormsAppDotNet6
 {
 	partial class frmDepositCalculate
 	{
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		///  Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		///  Clean up any resources being used.
 		/// </summary>
-		/// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && (components != null))
@@ -20,11 +20,11 @@
 			base.Dispose(disposing);
 		}
 
-		#region Код, автоматически созданный конструктором форм Windows
+		#region Windows Form Designer generated code
 
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		///  Required method for Designer support - do not modify
+		///  the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -60,7 +60,7 @@
 			// txtInitialAmount
 			// 
 			this.txtInitialAmount.Location = new System.Drawing.Point(109, 36);
-			this.txtInitialAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtInitialAmount.Margin = new System.Windows.Forms.Padding(2);
 			this.txtInitialAmount.Name = "txtInitialAmount";
 			this.txtInitialAmount.Size = new System.Drawing.Size(144, 20);
 			this.txtInitialAmount.TabIndex = 1;
@@ -93,7 +93,7 @@
             "Daily capitalization",
             "Monthly capitalization"});
 			this.cbxPaymentMethod.Location = new System.Drawing.Point(109, 168);
-			this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxPaymentMethod.Name = "cbxPaymentMethod";
 			this.cbxPaymentMethod.Size = new System.Drawing.Size(144, 21);
 			this.cbxPaymentMethod.TabIndex = 6;
@@ -131,9 +131,9 @@
 			this.groupBox1.Controls.Add(this.txtInitialAmount);
 			this.groupBox1.Controls.Add(this.lblInitialAmount);
 			this.groupBox1.Location = new System.Drawing.Point(32, 32);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Size = new System.Drawing.Size(276, 269);
 			this.groupBox1.TabIndex = 8;
 			this.groupBox1.TabStop = false;
@@ -142,7 +142,7 @@
 			// btnCalculateAsync
 			// 
 			this.btnCalculateAsync.Location = new System.Drawing.Point(180, 238);
-			this.btnCalculateAsync.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnCalculateAsync.Margin = new System.Windows.Forms.Padding(2);
 			this.btnCalculateAsync.Name = "btnCalculateAsync";
 			this.btnCalculateAsync.Size = new System.Drawing.Size(92, 24);
 			this.btnCalculateAsync.TabIndex = 11;
@@ -153,7 +153,7 @@
 			// txtInterestRate
 			// 
 			this.txtInterestRate.Location = new System.Drawing.Point(109, 82);
-			this.txtInterestRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtInterestRate.Margin = new System.Windows.Forms.Padding(2);
 			this.txtInterestRate.Name = "txtInterestRate";
 			this.txtInterestRate.Size = new System.Drawing.Size(144, 20);
 			this.txtInterestRate.TabIndex = 10;
@@ -161,7 +161,7 @@
 			// txtNumberOfMonths
 			// 
 			this.txtNumberOfMonths.Location = new System.Drawing.Point(109, 128);
-			this.txtNumberOfMonths.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.txtNumberOfMonths.Margin = new System.Windows.Forms.Padding(2);
 			this.txtNumberOfMonths.Name = "txtNumberOfMonths";
 			this.txtNumberOfMonths.Size = new System.Drawing.Size(144, 20);
 			this.txtNumberOfMonths.TabIndex = 10;
@@ -169,7 +169,7 @@
 			// btnCalculate
 			// 
 			this.btnCalculate.Location = new System.Drawing.Point(103, 238);
-			this.btnCalculate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnCalculate.Margin = new System.Windows.Forms.Padding(2);
 			this.btnCalculate.Name = "btnCalculate";
 			this.btnCalculate.Size = new System.Drawing.Size(73, 24);
 			this.btnCalculate.TabIndex = 8;
@@ -190,7 +190,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label1.Location = new System.Drawing.Point(209, 405);
 			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label1.Name = "label1";
@@ -198,7 +198,7 @@
 			this.label1.TabIndex = 10;
 			this.label1.Text = "©vmvpro 2023☺";
 			// 
-			// frmDepositCalculate
+			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,8 +207,8 @@
 			this.Controls.Add(this.lblTotalResult);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.TotalResult);
-			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Name = "frmDepositCalculate";
+			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.Name = "Form1";
 			this.Text = "Form1";
 			this.Load += new System.EventHandler(this.frmDepositCalculate_Load);
 			this.groupBox1.ResumeLayout(false);
@@ -236,6 +236,7 @@
 		private System.Windows.Forms.Label lblTotalResult;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnCalculateAsync;
+
+
 	}
 }
-

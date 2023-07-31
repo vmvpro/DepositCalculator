@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DepositCalculator.Client.Enums
+namespace DepositCalculator.ClientDotNet6.Enums
 {
 	public enum CalculationAlgorithm
 	{

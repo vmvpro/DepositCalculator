@@ -1,4 +1,4 @@
-﻿using DepositCalculator.Client.Model;
+﻿using DepositCalculator.ClientDotNet6.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DepositCalculator.Client.Domain
+namespace DepositCalculator.ClientDotNet6.Domain
 {
 	public class SingleStrategy : IDepositStrategy
 	{
@@ -26,8 +26,8 @@ namespace DepositCalculator.Client.Domain
 
 			// General calculation formula
 			// Result is the amount at the end of the term, including the opening amount and accrued interest
-			return await Task.Run(() => P + ((P * I * T / K) / 100));
-			
+			return await Task.Run(() => P + P * I * T / K / 100);
+
 		}
 	}
 }

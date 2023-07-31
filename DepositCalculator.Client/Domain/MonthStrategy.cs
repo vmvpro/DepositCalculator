@@ -1,11 +1,11 @@
-﻿using DepositCalculator.Client.Model;
+﻿using DepositCalculator.ClientDotNet6.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DepositCalculator.Client.Domain
+namespace DepositCalculator.ClientDotNet6.Domain
 {
 	/// <summary>
 	/// Monthly capitalization
@@ -27,7 +27,7 @@ namespace DepositCalculator.Client.Domain
 			// Result is, the amount of the deposit at the end of the term,
 			// including the opening amount and accrued interest
 			return await Task.Run(() => P * Math.Pow(1 + N / 12, T));
-			
+
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using DepositCalculator.Client.Enums;
+﻿using DepositCalculator.ClientDotNet6.Enums;
 using FluentValidation;
 using FluentValidation.Results;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DepositCalculator.Client.Model
+namespace DepositCalculator.ClientDotNet6.Models
 {
 	public class DepositModel
 	{
