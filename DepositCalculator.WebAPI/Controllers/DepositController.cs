@@ -1,3 +1,4 @@
+using DepositCalculator.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepositCalculator.WebAPI.Controllers
@@ -29,5 +30,30 @@ namespace DepositCalculator.WebAPI.Controllers
 			})
 			.ToArray();
 		}
+
+		/// <summary>
+		/// Створення нової задачі для конкретного співробітника
+		/// </summary>
+		/// <param name="taskDTO"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("employee/createTask")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult> CalculateAsync([FromBody] DepositModel depositModel)
+		{
+			try
+			{
+				
+
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.Message);
+			}
+		}
+
+
 	}
 }
