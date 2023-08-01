@@ -14,10 +14,10 @@ namespace DepositCalculator.Client.Buttons
 		{
 			try
 			{
-				var responseResult =
+				var response =
 					await RestClient.PostAsyncToObject<double, DepositModel>(depositModel, "/calculate");
 
-				var D = responseResult.Result;
+				var D = response.Result;
 
 				return D.ToString("### ### ###.00 ₴");
 			}
