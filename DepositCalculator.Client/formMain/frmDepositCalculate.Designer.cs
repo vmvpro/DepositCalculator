@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.lblInitialAmount = new System.Windows.Forms.Label();
 			this.txtInitialAmount = new System.Windows.Forms.TextBox();
 			this.lblInterestRate = new System.Windows.Forms.Label();
@@ -41,17 +40,15 @@
 			this.lblNumberOfMonthValue = new System.Windows.Forms.Label();
 			this.trbNumberOfMonths = new System.Windows.Forms.TrackBar();
 			this.trbInterestRate = new System.Windows.Forms.TrackBar();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cbxCurrency = new System.Windows.Forms.ComboBox();
 			this.btnWebCalculateAsync = new System.Windows.Forms.Button();
 			this.btnCalculateAsync = new System.Windows.Forms.Button();
 			this.btnCalculate = new System.Windows.Forms.Button();
 			this.lblTotalResult = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.trbNumberOfMonths)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trbInterestRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lblInitialAmount
@@ -134,7 +131,7 @@
 			this.groupBox1.Controls.Add(this.lblNumberOfMonthValue);
 			this.groupBox1.Controls.Add(this.trbNumberOfMonths);
 			this.groupBox1.Controls.Add(this.trbInterestRate);
-			this.groupBox1.Controls.Add(this.comboBox1);
+			this.groupBox1.Controls.Add(this.cbxCurrency);
 			this.groupBox1.Controls.Add(this.btnWebCalculateAsync);
 			this.groupBox1.Controls.Add(this.btnCalculateAsync);
 			this.groupBox1.Controls.Add(this.btnCalculate);
@@ -191,18 +188,14 @@
 			this.trbInterestRate.TabIndex = 14;
 			this.trbInterestRate.Value = 6;
 			// 
-			// comboBox1
+			// cbxCurrency
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
-            "UA",
-            "USD",
-            "EUR"});
-			this.comboBox1.Location = new System.Drawing.Point(295, 38);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(49, 21);
-			this.comboBox1.TabIndex = 13;
-			this.comboBox1.Text = "UA";
+			this.cbxCurrency.FormattingEnabled = true;
+			this.cbxCurrency.Location = new System.Drawing.Point(295, 38);
+			this.cbxCurrency.Name = "cbxCurrency";
+			this.cbxCurrency.Size = new System.Drawing.Size(49, 21);
+			this.cbxCurrency.TabIndex = 13;
+			this.cbxCurrency.Text = "UA";
 			// 
 			// btnWebCalculateAsync
 			// 
@@ -257,10 +250,6 @@
 			this.label1.TabIndex = 10;
 			this.label1.Text = "©vmvpro 2023☺";
 			// 
-			// bindingSource1
-			// 
-			this.bindingSource1.DataSource = typeof(System.Windows.Forms.Label);
-			// 
 			// frmDepositCalculate
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,7 +266,6 @@
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.trbNumberOfMonths)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.trbInterestRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -301,8 +289,7 @@
 		public Label lblNumberOfMonthValue;
 		public TrackBar trbNumberOfMonths;
 		public TrackBar trbInterestRate;
-		public ComboBox comboBox1;
+		public ComboBox cbxCurrency;
 		public Label lblInterestRateValue;
-		public BindingSource bindingSource1;
 	}
 }

@@ -12,7 +12,7 @@ namespace DepositCalculator.Client.FormMain
 {
 	public partial class Buttons
 	{
-		public static async Task<string> CalculateAsync(DepositModel depositModel)
+		public static async Task<double> CalculateAsync(DepositModel depositModel)
 		{
 			var deposit = new Deposit(depositModel);
 
@@ -20,14 +20,14 @@ namespace DepositCalculator.Client.FormMain
 			{
 				MessageBox.Show(deposit.ErrorMessage);
 
-				return "Error";
+				return (double)0.0;
 			}
 
 			deposit.Strategy = GetDepositStrategy(depositModel.Capitalization);
 
-			var totalResult = await deposit.CalculateAsync();
+			return await deposit.CalculateAsync();
 
-			return totalResult.ToString("### ### ###.00 ₴");
+			//return totalResult.ToString("### ### ###.00 ₴");
 		}
 
 		private static IDepositStrategy GetDepositStrategy(CalculationAlgorithm calculationAlgorithm) =>

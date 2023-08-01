@@ -10,7 +10,7 @@ namespace DepositCalculator.Client.FormMain
 {
 	public partial class Buttons
 	{
-		public static async Task<string> WebCalculateAsync(DepositModel depositModel)
+		public static async Task<double> WebCalculateAsync(DepositModel depositModel)
 		{
 			try
 			{
@@ -19,13 +19,13 @@ namespace DepositCalculator.Client.FormMain
 
 				var D = response.Result;
 
-				return D.ToString("### ### ###.00 ₴");
+				return D;
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
-				
-				return "Error";
+
+				return (double)0.0; //"Error";
 			}
 		}
 	}

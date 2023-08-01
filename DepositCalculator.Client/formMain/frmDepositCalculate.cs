@@ -12,6 +12,8 @@ namespace DepositCalculator.Client.FormMain
 {
 	public partial class frmDepositCalculate : Form
 	{
+		private BindingCollections currencySource;
+
 		public frmDepositCalculate()
 		{
 			InitializeComponent();
@@ -20,8 +22,6 @@ namespace DepositCalculator.Client.FormMain
 		private void frmDepositCalculate_Load(object sender, EventArgs e)
 		{
 			DataBindingToFormControls();
-
-			cbxPaymentMethod.SelectedIndex = (int)CalculationAlgorithm.DailyCapitalization;
 		}
 
 		private void DataBindingToFormControls()
@@ -35,6 +35,35 @@ namespace DepositCalculator.Client.FormMain
 				new Binding(nameof(lblNumberOfMonthValue.Text), 
 				trbNumberOfMonths, 
 				nameof(trbNumberOfMonths.Value)));
+
+			currencySource = new BindingCollections()
+			{
+				Сurrencies = new List<Currency>()
+				{
+					new Currency(){ Name = "Ukraine", ShortName = "UA", Interest = 1, Sign = "₴", Course = 1},
+					new Currency(){ Name = "Euro",  ShortName = "EUR", Interest = 100, Sign = "€", Course = 41.1 },
+					new Currency(){ Name = "USA", ShortName = "USD", Interest = 100, Sign = "$", Course = 37.7},
+				}
+			};
+
+			cbxCurrency.DataSource = currencySource.Сurrencies;
+			cbxCurrency.DisplayMember = nameof(Currency.ShortName);
+			cbxCurrency.ValueMember = nameof(Currency.Course);
+
+			cbxCurrency.SelectedIndexChanged += btnCalculate_Click;
+
+			cbxPaymentMethod.SelectedIndex = (int)CalculationAlgorithm.DailyCapitalization;
+
+		}
+
+		private string GetTotalResultToStringWithSign(double totalResult)
+		{
+			var result = totalResult / (double)cbxCurrency.SelectedValue;
+
+			var index = cbxCurrency.SelectedIndex;
+			var sign = currencySource.Сurrencies[index].Sign;
+
+			return result.ToString($"### ### ##0.00 {sign}");
 		}
 
 		private DepositModel GetDepositModelFromForm() => new DepositModel()
@@ -50,7 +79,9 @@ namespace DepositCalculator.Client.FormMain
 
 		private async void btnWebCalculateAsync_Click(object sender, EventArgs e)
 		{
-			lblTotalResult.Text = await Buttons.WebCalculateAsync(GetDepositModelFromForm());
+			var totalResult = await Buttons.CalculateAsync(GetDepositModelFromForm());
+
+			lblTotalResult.Text = totalResult != (double)0.0 ? GetTotalResultToStringWithSign(totalResult) : "Error";
 		}
 
 		#endregion
@@ -59,7 +90,9 @@ namespace DepositCalculator.Client.FormMain
 
 		private async void btnCalculateAsync_Click(object sender, EventArgs e)
 		{
-			lblTotalResult.Text = await  Buttons.CalculateAsync(GetDepositModelFromForm());
+			var totalResult = await Buttons.CalculateAsync(GetDepositModelFromForm());
+
+			lblTotalResult.Text = totalResult != (double)0.0 ? GetTotalResultToStringWithSign(totalResult) : "Error";
 		}
 
 		#endregion
@@ -83,12 +116,13 @@ namespace DepositCalculator.Client.FormMain
 				lblTotalResult.Text = "Error";
 
 				return;
-
 			}
 
-			lblTotalResult.Text = CalculationDefinition(depositModel).ToString("### ### ###.00 ₴");
+			lblTotalResult.Text = GetTotalResultToStringWithSign(CalculationDefinition(depositModel));
 
 		}
+
+
 
 		private double CalculationDefinition(DepositModel depositModel)
 		{
