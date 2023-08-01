@@ -7,9 +7,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Text.Json;
 using System.Text;
 using DepositCalculator.Core.Models.Response;
-using DepositCalculator.Client.Buttons;
 
-namespace WinFormsAppDotNet6
+namespace DepositCalculator.Client.FormMain
 {
 	public partial class frmDepositCalculate : Form
 	{
@@ -35,9 +34,9 @@ namespace WinFormsAppDotNet6
 			Capitalization = (CalculationAlgorithm)cbxPaymentMethod.SelectedIndex
 		};
 
-		#region WebCalculateAsync
+		#region btnWebCalculateAsync
 
-		private async void button1_Click(object sender, EventArgs e)
+		private async void btnWebCalculateAsync_Click(object sender, EventArgs e)
 		{
 			lblTotalResult.Text = await Buttons.WebCalculateAsync(GetDepositModelFromForm());
 		}
@@ -48,7 +47,7 @@ namespace WinFormsAppDotNet6
 
 		private async void btnCalculateAsync_Click(object sender, EventArgs e)
 		{
-			lblTotalResult.Text = await Buttons.CalculateAsync(GetDepositModelFromForm());
+			lblTotalResult.Text = await  Buttons.CalculateAsync(GetDepositModelFromForm());
 		}
 
 		#endregion

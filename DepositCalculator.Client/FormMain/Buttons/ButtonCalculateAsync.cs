@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DepositCalculator.Client.Buttons
+namespace DepositCalculator.Client.FormMain
 {
 	public partial class Buttons
 	{

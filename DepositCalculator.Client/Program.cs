@@ -1,4 +1,4 @@
-using WinFormsAppDotNet6;
+using DepositCalculator.Client.FormMain;
 
 namespace DepositCalculator.Client
 {

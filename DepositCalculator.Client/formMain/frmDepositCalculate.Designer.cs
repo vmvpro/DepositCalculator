@@ -1,4 +1,4 @@
-﻿namespace WinFormsAppDotNet6
+﻿namespace DepositCalculator.Client.FormMain
 {
 	partial class frmDepositCalculate
 	{
@@ -149,7 +149,7 @@
 			this.btnWebCalculateAsync.TabIndex = 12;
 			this.btnWebCalculateAsync.Text = "web_async";
 			this.btnWebCalculateAsync.UseVisualStyleBackColor = true;
-			this.btnWebCalculateAsync.Click += new System.EventHandler(this.button1_Click);
+			this.btnWebCalculateAsync.Click += new System.EventHandler(this.btnWebCalculateAsync_Click);
 			// 
 			// btnCalculateAsync
 			// 
