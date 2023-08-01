@@ -36,6 +36,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.TotalResult = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnWebCalculateAsync = new System.Windows.Forms.Button();
 			this.btnCalculateAsync = new System.Windows.Forms.Button();
 			this.txtInterestRate = new System.Windows.Forms.NumericUpDown();
 			this.txtNumberOfMonths = new System.Windows.Forms.NumericUpDown();
@@ -62,7 +63,7 @@
 			this.txtInitialAmount.Location = new System.Drawing.Point(109, 36);
 			this.txtInitialAmount.Margin = new System.Windows.Forms.Padding(2);
 			this.txtInitialAmount.Name = "txtInitialAmount";
-			this.txtInitialAmount.Size = new System.Drawing.Size(144, 20);
+			this.txtInitialAmount.Size = new System.Drawing.Size(172, 20);
 			this.txtInitialAmount.TabIndex = 1;
 			// 
 			// lblInterestRate
@@ -95,7 +96,7 @@
 			this.cbxPaymentMethod.Location = new System.Drawing.Point(109, 168);
 			this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxPaymentMethod.Name = "cbxPaymentMethod";
-			this.cbxPaymentMethod.Size = new System.Drawing.Size(144, 21);
+			this.cbxPaymentMethod.Size = new System.Drawing.Size(172, 21);
 			this.cbxPaymentMethod.TabIndex = 6;
 			// 
 			// label4
@@ -120,6 +121,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.btnWebCalculateAsync);
 			this.groupBox1.Controls.Add(this.btnCalculateAsync);
 			this.groupBox1.Controls.Add(this.txtInterestRate);
 			this.groupBox1.Controls.Add(this.txtNumberOfMonths);
@@ -134,14 +136,24 @@
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox1.Size = new System.Drawing.Size(276, 269);
+			this.groupBox1.Size = new System.Drawing.Size(292, 269);
 			this.groupBox1.TabIndex = 8;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Input data";
 			// 
+			// btnWebCalculateAsync
+			// 
+			this.btnWebCalculateAsync.Location = new System.Drawing.Point(206, 239);
+			this.btnWebCalculateAsync.Name = "btnWebCalculateAsync";
+			this.btnWebCalculateAsync.Size = new System.Drawing.Size(75, 23);
+			this.btnWebCalculateAsync.TabIndex = 12;
+			this.btnWebCalculateAsync.Text = "web_async";
+			this.btnWebCalculateAsync.UseVisualStyleBackColor = true;
+			this.btnWebCalculateAsync.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// btnCalculateAsync
 			// 
-			this.btnCalculateAsync.Location = new System.Drawing.Point(180, 238);
+			this.btnCalculateAsync.Location = new System.Drawing.Point(109, 238);
 			this.btnCalculateAsync.Margin = new System.Windows.Forms.Padding(2);
 			this.btnCalculateAsync.Name = "btnCalculateAsync";
 			this.btnCalculateAsync.Size = new System.Drawing.Size(92, 24);
@@ -155,7 +167,7 @@
 			this.txtInterestRate.Location = new System.Drawing.Point(109, 82);
 			this.txtInterestRate.Margin = new System.Windows.Forms.Padding(2);
 			this.txtInterestRate.Name = "txtInterestRate";
-			this.txtInterestRate.Size = new System.Drawing.Size(144, 20);
+			this.txtInterestRate.Size = new System.Drawing.Size(172, 20);
 			this.txtInterestRate.TabIndex = 10;
 			// 
 			// txtNumberOfMonths
@@ -163,17 +175,17 @@
 			this.txtNumberOfMonths.Location = new System.Drawing.Point(109, 128);
 			this.txtNumberOfMonths.Margin = new System.Windows.Forms.Padding(2);
 			this.txtNumberOfMonths.Name = "txtNumberOfMonths";
-			this.txtNumberOfMonths.Size = new System.Drawing.Size(144, 20);
+			this.txtNumberOfMonths.Size = new System.Drawing.Size(172, 20);
 			this.txtNumberOfMonths.TabIndex = 10;
 			// 
 			// btnCalculate
 			// 
-			this.btnCalculate.Location = new System.Drawing.Point(103, 238);
+			this.btnCalculate.Location = new System.Drawing.Point(9, 238);
 			this.btnCalculate.Margin = new System.Windows.Forms.Padding(2);
 			this.btnCalculate.Name = "btnCalculate";
-			this.btnCalculate.Size = new System.Drawing.Size(73, 24);
+			this.btnCalculate.Size = new System.Drawing.Size(96, 24);
 			this.btnCalculate.TabIndex = 8;
-			this.btnCalculate.Text = "Calculate";
+			this.btnCalculate.Text = "Calculate (local)";
 			this.btnCalculate.UseVisualStyleBackColor = true;
 			this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
 			// 
@@ -183,9 +195,9 @@
 			this.lblTotalResult.Location = new System.Drawing.Point(108, 322);
 			this.lblTotalResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.lblTotalResult.Name = "lblTotalResult";
-			this.lblTotalResult.Size = new System.Drawing.Size(36, 13);
+			this.lblTotalResult.Size = new System.Drawing.Size(22, 13);
 			this.lblTotalResult.TabIndex = 9;
-			this.lblTotalResult.Text = "0 грн.";
+			this.lblTotalResult.Text = "0 ₴";
 			// 
 			// label1
 			// 
@@ -202,7 +214,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(332, 430);
+			this.ClientSize = new System.Drawing.Size(373, 430);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.lblTotalResult);
 			this.Controls.Add(this.groupBox1);
@@ -235,7 +247,6 @@
 		private System.Windows.Forms.Label lblTotalResult;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnCalculateAsync;
-
-
+		private Button btnWebCalculateAsync;
 	}
 }

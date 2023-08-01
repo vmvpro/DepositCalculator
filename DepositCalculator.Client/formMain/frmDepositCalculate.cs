@@ -3,6 +3,11 @@ using DepositCalculator.Core.Domain.Strategy;
 using DepositCalculator.Core.Enums;
 using DepositCalculator.Core.Models;
 using FluentValidation.Results;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using System.Text.Json;
+using System.Text;
+using DepositCalculator.Core.Models.Response;
+using DepositCalculator.Client.Buttons;
 
 namespace WinFormsAppDotNet6
 {
@@ -20,28 +25,35 @@ namespace WinFormsAppDotNet6
 			txtNumberOfMonths.Value = 6;
 			cbxPaymentMethod.SelectedIndex = (int)CalculationAlgorithm.DailyCapitalization;
 		}
-		#region btnCalculate
+
+		private DepositModel GetDepositModelFromForm() => new DepositModel()
+		{
+			InitialAmount = Convert.ToDouble(txtInitialAmount.Text),
+			InterestRate = Convert.ToDouble(txtInterestRate.Value),
+			NumberOfMonths = Convert.ToInt32(txtNumberOfMonths.Value),
+
+			Capitalization = (CalculationAlgorithm)cbxPaymentMethod.SelectedIndex
+		};
+
+		#region WebCalculateAsync
+
+		private async void button1_Click(object sender, EventArgs e)
+		{
+			lblTotalResult.Text = await Buttons.WebCalculateAsync(GetDepositModelFromForm());
+		}
+
+		#endregion
+
+		#region btnCalculateAsync
 
 		private async void btnCalculateAsync_Click(object sender, EventArgs e)
 		{
-			DepositModel depositModel = GetDepositModelFromForm();
-
-			var deposit = new Deposit(depositModel);
-
-			if (!(await deposit.IsValid()))
-			{
-				MessageBox.Show(deposit.ErrorMessage);
-				lblTotalResult.Text = "Error";
-				return;
-			}
-
-			deposit.Strategy = GetDepositStrategy(depositModel.Capitalization);
-
-			var totalResult = await deposit.CalculateAsync();
-
-			lblTotalResult.Text = totalResult.ToString("### ### ###.00 ₴");
-
+			lblTotalResult.Text = await Buttons.CalculateAsync(GetDepositModelFromForm());
 		}
+
+		#endregion
+
+		#region btnCalculate
 
 		private void btnCalculate_Click(object sender, EventArgs e)
 		{
@@ -61,16 +73,16 @@ namespace WinFormsAppDotNet6
 
 				return;
 
-
 			}
 
-			CalculationDefinition(depositModel);
+			lblTotalResult.Text = CalculationDefinition(depositModel).ToString("### ### ###.00 ₴");
 
 		}
 
-		private void CalculationDefinition(DepositModel depositModel)
+		private double CalculationDefinition(DepositModel depositModel)
 		{
-			//Daily capitalization
+
+			// Simple Interest
 			if (depositModel.Capitalization == CalculationAlgorithm.SimpleInterest)
 			{
 				// P is the initial deposit amount
@@ -89,9 +101,7 @@ namespace WinFormsAppDotNet6
 				// Result is the amount at the end of the term,
 				// including the opening amount and accrued interest
 
-				var D = P + ((P * I * T / K) / 100);
-
-				lblTotalResult.Text = D.ToString("### ### ###.00 ₴");
+				return P + ((P * I * T / K) / 100);
 
 			}
 
@@ -112,9 +122,7 @@ namespace WinFormsAppDotNet6
 
 				// General calculation formula
 				// D is the amount at the end of the term, including the opening amount and accrued interest
-				var D = P * Math.Pow(1 + N / K, T);
-
-				lblTotalResult.Text = D.ToString("### ### ###.00 ₴");
+				return P * Math.Pow(1 + N / K, T);
 
 			}
 
@@ -132,37 +140,13 @@ namespace WinFormsAppDotNet6
 
 				// General calculation formula
 
-				var D = P * Math.Pow(1 + N / 12, T);
-
-				lblTotalResult.Text = D.ToString("### ### ###.00 ₴");
+				return P * Math.Pow(1 + N / 12, T);
 			}
+
+			return (double) 0.0;
 		}
 
 		#endregion
 
-
-		private DepositModel GetDepositModelFromForm() => new DepositModel()
-		{
-			InitialAmount = Convert.ToDouble(txtInitialAmount.Text),
-			InterestRate = Convert.ToDouble(txtInterestRate.Value),
-			NumberOfMonths = Convert.ToInt32(txtNumberOfMonths.Value),
-
-			Capitalization = (CalculationAlgorithm)cbxPaymentMethod.SelectedIndex
-		};
-
-		private IDepositStrategy GetDepositStrategy(CalculationAlgorithm calculationAlgorithm)
-		{
-			switch (calculationAlgorithm)
-			{
-				case CalculationAlgorithm.SimpleInterest:
-					return new SingleStrategy();
-				case CalculationAlgorithm.DailyCapitalization:
-					return new DailyStrategy();
-				case CalculationAlgorithm.MonthlyCapitalization:
-					return new MonthStrategy();
-				default:
-					return new SingleStrategy();
-			}
-		}
 	}
 }
