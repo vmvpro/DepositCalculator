@@ -1,17 +1,17 @@
+п»їusing DepositCalculator.Core.Domain;
+using DepositCalculator.Core.Domain.Strategy;
+using DepositCalculator.Core.Enums;
 using DepositCalculator.Core.Models;
+using DepositCalculator.Core.Models.Response;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace DepositCalculator.WebAPI.Controllers
 {
 	[ApiController]
-	[Route("[controller]")]
+	[Route("api/[controller]")]
 	public class DepositController : ControllerBase
 	{
-		private static readonly string[] Summaries = new[]
-		{
-			"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-		};
-
 		private readonly ILogger<DepositController> _logger;
 
 		public DepositController(ILogger<DepositController> logger)
@@ -19,40 +19,68 @@ namespace DepositCalculator.WebAPI.Controllers
 			_logger = logger;
 		}
 
-		[HttpGet(Name = "GetWeatherForecast")]
-		public IEnumerable<WeatherForecast> Get()
+		[HttpGet(Name = "GetDeposit")]
+		public async Task<Response<double>> Get()
 		{
-			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+			var depositModel = new DepositModel
 			{
-				Date = DateTime.Now.AddDays(index),
-				TemperatureC = Random.Shared.Next(-20, 55),
-				Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-			})
-			.ToArray();
+				InitialAmount = 10000,
+				InterestRate = 3,
+				NumberOfMonths = 6,
+				Capitalization = CalculationAlgorithm.DailyCapitalization,
+			};
+
+			var deposit = new Deposit(depositModel);
+
+			deposit.Strategy = GetDepositStrategy(depositModel.Capitalization);
+
+			var totalResult = await deposit.CalculateAsync();
+
+			return Response<double>.Success(totalResult, HttpStatusCode.OK);
+
 		}
 
 		/// <summary>
-		/// Створення нової задачі для конкретного співробітника
+		/// Calculate deposit
 		/// </summary>
 		/// <param name="taskDTO"></param>
 		/// <returns></returns>
 		[HttpPost]
-		[Route("employee/createTask")]
+		[Route("Calculate")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult> CalculateAsync([FromBody] DepositModel depositModel)
+		public async Task<Response<double>> CalculateAsync([FromBody] DepositModel depositModel)
 		{
+			var deposit = new Deposit(depositModel);
+
 			try
 			{
-				
+				if (!(await deposit.IsValid()))
+				{
+					throw new Exception(deposit.ErrorMessage);
+				}
 
-				return Ok();
+				deposit.Strategy = GetDepositStrategy(depositModel.Capitalization);
+
+				var totalResult = await deposit.CalculateAsync();
+
+				return Response<double>.Success(totalResult, HttpStatusCode.OK);
 			}
 			catch (Exception ex)
 			{
-				return BadRequest(ex.Message);
+				return Response<double>.Fail(ex.Message, HttpStatusCode.BadRequest);
 			}
 		}
+
+		private IDepositStrategy GetDepositStrategy(CalculationAlgorithm calculationAlgorithm) =>
+			calculationAlgorithm switch
+			{
+				CalculationAlgorithm.SimpleInterest => new SingleStrategy(),
+				CalculationAlgorithm.DailyCapitalization => new DailyStrategy(),
+				CalculationAlgorithm.MonthlyCapitalization => new MonthStrategy(),
+				_ => new SingleStrategy()
+			};
+
 
 
 	}

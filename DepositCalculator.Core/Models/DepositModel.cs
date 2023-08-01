@@ -12,7 +12,7 @@ namespace DepositCalculator.Core.Models
 {
 	public class DepositModel
 	{
-		public double Balance { get; set; }
+		public double? Balance { get; set; }
 		public double InitialAmount { get; set; }
 		public double InterestRate { get; set; }
 		public int NumberOfMonths { get; set; }
@@ -34,6 +34,7 @@ namespace DepositCalculator.Core.Models
 
 
 	}
+
 
 	public class DepositModelValidator : AbstractValidator<DepositModel>
 	{
