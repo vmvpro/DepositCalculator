@@ -19,17 +19,29 @@ namespace DepositCalculator.Client.FormMain
 
 		private void frmDepositCalculate_Load(object sender, EventArgs e)
 		{
-			txtInitialAmount.Text = "10000";
-			txtInterestRate.Value = 3;
-			txtNumberOfMonths.Value = 6;
+			DataBindingToFormControls();
+
 			cbxPaymentMethod.SelectedIndex = (int)CalculationAlgorithm.DailyCapitalization;
+		}
+
+		private void DataBindingToFormControls()
+		{
+			lblInterestRateValue.DataBindings.Add(
+				   new Binding(nameof(lblInterestRateValue.Text), 
+				   trbInterestRate, 
+				   nameof(trbInterestRate.Value)));
+
+			lblNumberOfMonthValue.DataBindings.Add(
+				new Binding(nameof(lblNumberOfMonthValue.Text), 
+				trbNumberOfMonths, 
+				nameof(trbNumberOfMonths.Value)));
 		}
 
 		private DepositModel GetDepositModelFromForm() => new DepositModel()
 		{
 			InitialAmount = Convert.ToDouble(txtInitialAmount.Text),
-			InterestRate = Convert.ToDouble(txtInterestRate.Value),
-			NumberOfMonths = Convert.ToInt32(txtNumberOfMonths.Value),
+			InterestRate = Convert.ToDouble(trbInterestRate.Value),
+			NumberOfMonths = Convert.ToInt32(trbNumberOfMonths.Value),
 
 			Capitalization = (CalculationAlgorithm)cbxPaymentMethod.SelectedIndex
 		};

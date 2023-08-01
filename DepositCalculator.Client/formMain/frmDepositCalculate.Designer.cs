@@ -28,24 +28,30 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.lblInitialAmount = new System.Windows.Forms.Label();
 			this.txtInitialAmount = new System.Windows.Forms.TextBox();
 			this.lblInterestRate = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
+			this.lblNumberOfMonth = new System.Windows.Forms.Label();
 			this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.TotalResult = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lblInterestRateValue = new System.Windows.Forms.Label();
+			this.lblNumberOfMonthValue = new System.Windows.Forms.Label();
+			this.trbNumberOfMonths = new System.Windows.Forms.TrackBar();
+			this.trbInterestRate = new System.Windows.Forms.TrackBar();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.btnWebCalculateAsync = new System.Windows.Forms.Button();
 			this.btnCalculateAsync = new System.Windows.Forms.Button();
-			this.txtInterestRate = new System.Windows.Forms.NumericUpDown();
-			this.txtNumberOfMonths = new System.Windows.Forms.NumericUpDown();
 			this.btnCalculate = new System.Windows.Forms.Button();
 			this.lblTotalResult = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
+			this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.txtInterestRate)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.txtNumberOfMonths)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.trbNumberOfMonths)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.trbInterestRate)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lblInitialAmount
@@ -60,11 +66,12 @@
 			// 
 			// txtInitialAmount
 			// 
-			this.txtInitialAmount.Location = new System.Drawing.Point(109, 36);
+			this.txtInitialAmount.Location = new System.Drawing.Point(109, 39);
 			this.txtInitialAmount.Margin = new System.Windows.Forms.Padding(2);
 			this.txtInitialAmount.Name = "txtInitialAmount";
-			this.txtInitialAmount.Size = new System.Drawing.Size(172, 20);
+			this.txtInitialAmount.Size = new System.Drawing.Size(181, 20);
 			this.txtInitialAmount.TabIndex = 1;
+			this.txtInitialAmount.Text = "10000";
 			// 
 			// lblInterestRate
 			// 
@@ -76,28 +83,30 @@
 			this.lblInterestRate.TabIndex = 2;
 			this.lblInterestRate.Text = "Interest rate:";
 			// 
-			// label3
+			// lblNumberOfMonth
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(16, 130);
-			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(96, 13);
-			this.label3.TabIndex = 4;
-			this.label3.Text = "Number of months:";
+			this.lblNumberOfMonth.AutoSize = true;
+			this.lblNumberOfMonth.Location = new System.Drawing.Point(16, 130);
+			this.lblNumberOfMonth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblNumberOfMonth.Name = "lblNumberOfMonth";
+			this.lblNumberOfMonth.Size = new System.Drawing.Size(96, 13);
+			this.lblNumberOfMonth.TabIndex = 4;
+			this.lblNumberOfMonth.Text = "Number of months:";
 			// 
 			// cbxPaymentMethod
 			// 
+			this.cbxPaymentMethod.DisplayMember = "1";
 			this.cbxPaymentMethod.FormattingEnabled = true;
 			this.cbxPaymentMethod.Items.AddRange(new object[] {
             "Simple interest",
             "Daily capitalization",
             "Monthly capitalization"});
-			this.cbxPaymentMethod.Location = new System.Drawing.Point(109, 168);
+			this.cbxPaymentMethod.Location = new System.Drawing.Point(109, 170);
 			this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(2);
 			this.cbxPaymentMethod.Name = "cbxPaymentMethod";
-			this.cbxPaymentMethod.Size = new System.Drawing.Size(172, 21);
+			this.cbxPaymentMethod.Size = new System.Drawing.Size(235, 21);
 			this.cbxPaymentMethod.TabIndex = 6;
+			this.cbxPaymentMethod.ValueMember = "1";
 			// 
 			// label4
 			// 
@@ -121,14 +130,17 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.lblInterestRateValue);
+			this.groupBox1.Controls.Add(this.lblNumberOfMonthValue);
+			this.groupBox1.Controls.Add(this.trbNumberOfMonths);
+			this.groupBox1.Controls.Add(this.trbInterestRate);
+			this.groupBox1.Controls.Add(this.comboBox1);
 			this.groupBox1.Controls.Add(this.btnWebCalculateAsync);
 			this.groupBox1.Controls.Add(this.btnCalculateAsync);
-			this.groupBox1.Controls.Add(this.txtInterestRate);
-			this.groupBox1.Controls.Add(this.txtNumberOfMonths);
 			this.groupBox1.Controls.Add(this.btnCalculate);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.cbxPaymentMethod);
-			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Controls.Add(this.lblNumberOfMonth);
 			this.groupBox1.Controls.Add(this.lblInterestRate);
 			this.groupBox1.Controls.Add(this.txtInitialAmount);
 			this.groupBox1.Controls.Add(this.lblInitialAmount);
@@ -136,10 +148,61 @@
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox1.Size = new System.Drawing.Size(292, 269);
+			this.groupBox1.Size = new System.Drawing.Size(363, 269);
 			this.groupBox1.TabIndex = 8;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Input data";
+			// 
+			// lblInterestRateValue
+			// 
+			this.lblInterestRateValue.AutoSize = true;
+			this.lblInterestRateValue.Location = new System.Drawing.Point(109, 84);
+			this.lblInterestRateValue.Name = "lblInterestRateValue";
+			this.lblInterestRateValue.Size = new System.Drawing.Size(25, 13);
+			this.lblInterestRateValue.TabIndex = 16;
+			this.lblInterestRateValue.Text = "___";
+			// 
+			// lblNumberOfMonthValue
+			// 
+			this.lblNumberOfMonthValue.AutoSize = true;
+			this.lblNumberOfMonthValue.Location = new System.Drawing.Point(109, 130);
+			this.lblNumberOfMonthValue.Name = "lblNumberOfMonthValue";
+			this.lblNumberOfMonthValue.Size = new System.Drawing.Size(25, 13);
+			this.lblNumberOfMonthValue.TabIndex = 16;
+			this.lblNumberOfMonthValue.Text = "___";
+			// 
+			// trbNumberOfMonths
+			// 
+			this.trbNumberOfMonths.Location = new System.Drawing.Point(155, 123);
+			this.trbNumberOfMonths.Maximum = 12;
+			this.trbNumberOfMonths.Minimum = 1;
+			this.trbNumberOfMonths.Name = "trbNumberOfMonths";
+			this.trbNumberOfMonths.Size = new System.Drawing.Size(189, 45);
+			this.trbNumberOfMonths.TabIndex = 15;
+			this.trbNumberOfMonths.Value = 1;
+			// 
+			// trbInterestRate
+			// 
+			this.trbInterestRate.Location = new System.Drawing.Point(155, 84);
+			this.trbInterestRate.Maximum = 14;
+			this.trbInterestRate.Minimum = 6;
+			this.trbInterestRate.Name = "trbInterestRate";
+			this.trbInterestRate.Size = new System.Drawing.Size(189, 45);
+			this.trbInterestRate.TabIndex = 14;
+			this.trbInterestRate.Value = 6;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "UA",
+            "USD",
+            "EUR"});
+			this.comboBox1.Location = new System.Drawing.Point(295, 38);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(49, 21);
+			this.comboBox1.TabIndex = 13;
+			this.comboBox1.Text = "UA";
 			// 
 			// btnWebCalculateAsync
 			// 
@@ -161,22 +224,6 @@
 			this.btnCalculateAsync.Text = "CalculateAsync";
 			this.btnCalculateAsync.UseVisualStyleBackColor = true;
 			this.btnCalculateAsync.Click += new System.EventHandler(this.btnCalculateAsync_Click);
-			// 
-			// txtInterestRate
-			// 
-			this.txtInterestRate.Location = new System.Drawing.Point(109, 82);
-			this.txtInterestRate.Margin = new System.Windows.Forms.Padding(2);
-			this.txtInterestRate.Name = "txtInterestRate";
-			this.txtInterestRate.Size = new System.Drawing.Size(172, 20);
-			this.txtInterestRate.TabIndex = 10;
-			// 
-			// txtNumberOfMonths
-			// 
-			this.txtNumberOfMonths.Location = new System.Drawing.Point(109, 128);
-			this.txtNumberOfMonths.Margin = new System.Windows.Forms.Padding(2);
-			this.txtNumberOfMonths.Name = "txtNumberOfMonths";
-			this.txtNumberOfMonths.Size = new System.Drawing.Size(172, 20);
-			this.txtNumberOfMonths.TabIndex = 10;
 			// 
 			// btnCalculate
 			// 
@@ -210,11 +257,15 @@
 			this.label1.TabIndex = 10;
 			this.label1.Text = "©vmvpro 2023☺";
 			// 
+			// bindingSource1
+			// 
+			this.bindingSource1.DataSource = typeof(System.Windows.Forms.Label);
+			// 
 			// frmDepositCalculate
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(373, 430);
+			this.ClientSize = new System.Drawing.Size(420, 430);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.lblTotalResult);
 			this.Controls.Add(this.groupBox1);
@@ -224,8 +275,9 @@
 			this.Load += new System.EventHandler(this.frmDepositCalculate_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.txtInterestRate)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.txtNumberOfMonths)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.trbNumberOfMonths)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.trbInterestRate)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -233,20 +285,24 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label lblInitialAmount;
-		private System.Windows.Forms.TextBox txtInitialAmount;
-		private System.Windows.Forms.Label lblInterestRate;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.ComboBox cbxPaymentMethod;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label TotalResult;
-		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Button btnCalculate;
-		private System.Windows.Forms.NumericUpDown txtInterestRate;
-		private System.Windows.Forms.NumericUpDown txtNumberOfMonths;
-		private System.Windows.Forms.Label lblTotalResult;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button btnCalculateAsync;
-		private Button btnWebCalculateAsync;
+		public System.Windows.Forms.Label lblInitialAmount;
+		public System.Windows.Forms.TextBox txtInitialAmount;
+		public System.Windows.Forms.Label lblInterestRate;
+		public System.Windows.Forms.Label lblNumberOfMonth;
+		public System.Windows.Forms.ComboBox cbxPaymentMethod;
+		public System.Windows.Forms.Label label4;
+		public System.Windows.Forms.Label TotalResult;
+		public System.Windows.Forms.GroupBox groupBox1;
+		public System.Windows.Forms.Button btnCalculate;
+		public System.Windows.Forms.Label lblTotalResult;
+		public System.Windows.Forms.Label label1;
+		public System.Windows.Forms.Button btnCalculateAsync;
+		public Button btnWebCalculateAsync;
+		public Label lblNumberOfMonthValue;
+		public TrackBar trbNumberOfMonths;
+		public TrackBar trbInterestRate;
+		public ComboBox comboBox1;
+		public Label lblInterestRateValue;
+		public BindingSource bindingSource1;
 	}
 }
