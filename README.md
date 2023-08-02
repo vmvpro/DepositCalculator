@@ -62,3 +62,7 @@ where:
 P — the initial deposit,
 N — the annual rate divided by 100,
 T — the term of the contract in months.
+
+### Preview
+![image](https://github.com/vmvpro/DepositCalculator/assets/20743357/7f8ee58e-58e8-4414-8da7-f362077ea006)
+
